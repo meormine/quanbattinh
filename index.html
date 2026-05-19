@@ -150,8 +150,6 @@
     }
 }
 
-
-
         .reference {
             font-size: 0.95rem;
             color: var(--text-muted);
@@ -168,7 +166,8 @@
             margin-top: 20px;
             opacity: 0.6;
         }
-/* --- Modal (Fullscreen Image) Styling --- */
+        
+        /* --- Modal (Fullscreen Image) Styling --- */
         .modal {
             display: none; /* Hidden by default */
             position: fixed;
@@ -177,13 +176,13 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.85);
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(5px);
         }
 
- .modal-content {
+        .modal-content {
             max-width: 95vw;
             max-height: 95vh;
             object-fit: contain;
@@ -193,6 +192,74 @@
             /* Scale from the center of the image */
             transform-origin: center; 
 			transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* --- Info Content Modal Styling --- */
+        .info-modal-panel {
+            background-color: var(--bg-panel);
+            color: var(--text-main);
+            border-radius: 12px;
+            max-width: 680px;
+            width: 90%;
+            max-height: 85vh;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            user-select: text; /* Allow users to copy content inside info modal */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Keeps the panel boundaries intact */
+        }
+
+        .info-modal-scroll {
+            overflow-y: auto; /* Scroll bar attaches here instead */
+            padding: 40px 30px 30px 30px;
+            line-height: 1.65;
+        }
+
+        .info-modal-panel h2 {
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.35rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+
+        .info-modal-panel h3 {
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .info-modal-panel p, .info-modal-panel ul {
+            margin-bottom: 16px;
+        }
+
+        .info-modal-panel ul {
+            padding-left: 22px;
+        }
+
+        .info-modal-panel li {
+            margin-bottom: 8px;
+        }
+
+        .info-modal-panel hr {
+            border: 0;
+            border-top: 1px dashed var(--border);
+            margin: 25px 0;
+        }
+
+        .info-modal-panel a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .info-modal-panel a:hover {
+            text-decoration: underline;
+        }
+
+        body.light-mode .info-modal-panel a {
+            color: #2e5fb7;
         }
 
         @keyframes zoom {
@@ -215,77 +282,159 @@
         .close-btn:hover {
             color: var(--accent);
         }
+
+        #close-info-modal {
+            top: 15px;
+            right: 20px;
+            color: var(--text-muted);
+        }
+
+        #close-info-modal:hover {
+            color: var(--text-main);
+        }
 		
 		/* --- Reference Link Styling --- */
-.reference a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: opacity 0.2s;
-}
+        .reference a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
 
+        .reference a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
 
+        /* --- Copy Button Styling --- */
+        .copy-btn {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 15px;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
 
-.reference a:hover {
-    text-decoration: underline;
-    opacity: 0.8;
-}
+        .copy-btn:hover {
+            background-color: var(--bg-hover);
+            color: var(--text-main);
+            border-color: var(--text-muted);
+        }
 
-/* --- Copy Button Styling --- */
-.copy-btn {
-    background-color: transparent;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-    padding: 6px 16px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 15px;
-    z-index: 10;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-}
+        /* Specific color for Light Mode as requested */
+        body.light-mode .reference a {
+            color: #2e5fb7;
+        }
+        /* Hide the light-mode icon by default (Dark Mode) */
+        .icon-light {
+            display: none;
+        }
 
-.copy-btn:hover {
-    background-color: var(--bg-hover);
-    color: var(--text-main);
-    border-color: var(--text-muted);
-}
+        body.light-mode .icon-light {
+            display: inline-block;
+            font-size: 1.1em; 
+            
+        }
 
-/* Specific color for Light Mode as requested */
-body.light-mode .reference a {
-    color: #2e5fb7;
-}
-/* Hide the light-mode icon by default (Dark Mode) */
-.icon-light {
-    display: none;
-}
-
-body.light-mode .icon-light {
-    display: inline-block;
-    font-size: 1.1em; 
-    
-}
-
-body.light-mode .icon-dark {
-    display: none;
-}
+        body.light-mode .icon-dark {
+            display: none;
+        }
     </style>
 </head>
 <body>
-<div id="image-modal" class="modal">
+    <div id="image-modal" class="modal">
         <span class="close-btn" id="close-modal"><i class="fas fa-xmark"></i></span>
         <img class="modal-content" id="modal-img">
     </div>
+
+    <div id="info-modal" class="modal">
+        <div class="info-modal-panel">
+            <span class="close-btn" id="close-info-modal"><i class="fas fa-xmark"></i></span>
+            
+            <div class="info-modal-scroll">
+            <p>Ứng dụng web <strong>Quán Bất Tịnh </strong> được thiết kế một cách trực quan và đơn giản, tập trung trực tiếp vào việc cung cấp nội dung mà không gây phức tạp kỹ thuật không cần thiết. Thay vì chú trọng vào cơ chế vận hành của ứng dụng, hướng dẫn này khám phá những lợi ích tâm lý sâu sắc của <em>asubha-bhāvanā</em> (quán chiếu về sự không đẹp đẽ/ô trược của thân thể) và cách thức công cụ này có thể hỗ trợ thực hành hàng ngày.</p>
+            
+            <hr>
+            
+            <h2>Căn bệnh: Rāga-Taṇhā (Ái Dục) như một căn bệnh tinh thần</h2>
+            <p>Trong các kinh điển Nguyên thủy Pali, các gốc bất thiện thường được ví như những căn bệnh. <em>Rāga-taṇhā</em> (ham muốn nhục dục và tình dục) không chỉ đơn thuần là một cảm xúc thoáng qua; nó vận hành như một căn bệnh tinh thần mạnh mẽ, ăn sâu vào tâm thức.</p>
+            <p>Sự thèm khát này có thể được ví chính xác như một loại virus sinh học:</p>
+            <ul>
+                <li><strong>Lây nhiễm và nhân lên:</strong> Một khi đối tượng dục lạc kích thích tâm trí, virus của sự tham dục xâm nhiễm vào ý thức, nhanh chóng nhân lên các tư tưởng bất thiện (<em>akusala-vitakka</em>).</li>
+                <li><strong>Phá hủy năng lực:</strong> Nó tiêu hao sự minh mẫn của tâm, phá hủy các căn lành (<em>indriya</em>) và làm suy yếu trí tuệ.</li>
+                <li><strong>Lây truyền:</strong> Nếu không được kiểm soát, nó thúc đẩy hành vi gây ra đau khổ tột cùng, lan truyền hậu quả hủy diệt của nó đến người khác và giam hãm chúng sinh trong vòng luân hồi (<em>saṃsāra</em>). Những ví dụ cực đoan trong lịch sử và đương đại về sự suy đồi đạo đức cho thấy mầm bệnh tinh thần này có thể hoàn toàn chiếm đoạt một cá nhân một cách tàn khốc như thế nào.</li>
+            </ul>
+            
+            <hr>
+            
+            <h2>Phương thuốc: Đức Phật là Vị Y Vương Tối Thượng</h2>
+            <p>May thay, Đức Phật được công nhận là <em>Bhisakka</em> – Vị Y Vương Tối Thượng. Bậc Toàn Giác đã chẩn đoán được mầm bệnh này và kê toa một giải độc đặc hiệu: <strong>Bất tịnh quán (Asubha-bhāvana)</strong>.</p>
+            <p>Nếu <em>rāga-taṇhā</em> là virus, thì <em>asubha</em> chính là liệu pháp kháng virus đặc trị. Giáo Pháp (Dhamma) cung cấp một khuôn khổ hoàn chỉnh để hoàn toàn tiêu diệt sự nhiễm trùng này và phục hồi sức khỏe tâm linh tối thượng (<em>Nibbāna</em>).</p>
+            
+            <h3>Cấp độ Sơ cơ: Quản lý tải lượng virus</h3>
+            <p>Đối với hầu hết hành giả, việc hoàn toàn nhổ sạch ham muốn nhục dục đòi hỏi các tầng giác ngộ cao cấp (cụ thể là giai đoạn <em>Anāgāmi</em>, Bất Lai). Tuy nhiên, việc sử dụng ứng dụng này một cách nhất quán hàng ngày đóng vai trò như một liều dự phòng mạnh mẽ.</p>
+            <ul>
+                <li>Nó làm giảm đáng kể “tải lượng virus” của tham dục trong dòng tâm thức.</li>
+                <li>Nó làm suy yếu sự kìm kẹp tức thời của các triền cái (<em>nīvaraṇa</em>), mang lại sự mát mẻ tâm hồn, sự minh mẫn sáng suốt và sức khỏe tinh thần ổn định ngay trong đời sống hàng ngày.</li>
+            </ul>
+            
+            <h3>Cấp độ Cao: Phát triển Thiền định (Jhāna)</h3>
+            <p>Đối với những ai mong muốn tiến xa đến các tầng định sâu, <em>bất tịnh quán</em> phục vụ như một phương tiện trực tiếp cho thiền <em>samatha</em> (chỉ tịnh).</p>
+            <ul>
+                <li>Thông qua quán chiếu bền bỉ và có hệ thống, đối tượng thị giác ban đầu chuyển hóa thành <em>uggaha-nimitta</em> (học tướng) và cuối cùng trở thành <em>paṭibhāga-nimitta</em> (tợ tướng) rực rỡ.</li>
+                <li>Sự thanh lọc tâm này dẫn trực tiếp đến chứng đạt <em>sơ thiền</em> (jhāna).</li>
+            </ul>
+            <p>Để có những hướng dẫn chi tiết về việc chuyển tiếp từ các hình ảnh bất tịnh cơ bản đến các tầng thiền cao hơn, các bộ sách hướng dẫn thiền toàn diện của Thiền Sư Pa-Auk Sayadaw cung cấp sự chỉ dẫn có thẩm quyền và tốt nhất. Các tác phẩm chính sau đây được giới thiệu để hành giả nghiên cứu:</p>
+            <ul>
+                <li><strong><a href="https://chuaphucminh.com/kinh-sach/anh-sang-cua-tue.pdf" target="_blank" rel="noopener noreferrer">Ánh Sáng của Tuệ (PDF)</a></strong></li>
+                <li><strong><a href="https://chuaphucminh.com/kinh-sach/biet-va-thay.pdf" target="_blank" rel="noopener noreferrer">Biết và Thấy (PDF)</a></strong></li>
+            </ul>
+            
+            <hr>
+            
+            <h2>Truy cập Công cụ</h2>
+            <p>Ứng dụng web này ghép cặp ngẫu nhiên các hình ảnh tham khảo <em>bất tịnh</em> với các đoạn kinh văn phù hợp nhằm phá vỡ nhận thức thông thường của tâm về thân thể này.</p>
+            <ul>
+                <li><strong>Mã nguồn:</strong> <a href="https://github.com/meormine/quanbattinh" target="_blank" rel="noopener noreferrer">https://github.com/meormine/quanbattinh</a></li>
+                <li><strong>Đường dẫn thay thế:</strong> <a href="https://quanbattinh.blogspot.com" target="_blank" rel="noopener noreferrer">https://quanbattinh.blogspot.com</a></li>
+                <li><strong>Ứng dụng Android:</strong> <a href="https://archive.org/download/quan-bat-tinh" target="_blank" rel="noopener noreferrer">https://archive.org/download/quan-bat-tinh</a></li>
+                <li><strong>RSS Feed cho Quán chiếu Hàng ngày:</strong> <a href="https://meormine.github.io/quanbattinh/asubha.xml" target="_blank" rel="noopener noreferrer">https://meormine.github.io/quanbattinh/asubha.xml</a></li>
+				
+    <li>
+    <strong>Hướng dẫn Tham khảo:</strong> 
+    <div style="display: block; width: 100%; aspect-ratio: 16 / 9; background: url('https://i.ytimg.com/vi/ysQ8Zvny5T4/hqdefault.jpg') 50% 50% / cover; border: 0; margin-top: 10px; position: relative; border-radius: 8px; overflow: hidden;">
+        
+        <iframe 
+            allowfullscreen="true" 
+            loading="lazy" 
+            scrolling="no" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; background: transparent;" 
+            src="https://www.youtube.com/embed/ysQ8Zvny5T4">
+        </iframe>
+        
+    </div>
+</li>
+            </ul>
+            <p style="margin-top: 15px; font-style: italic;">Cầu mong công cụ này là một phương tiện hỗ trợ hữu ích trên con đường diệt trừ các phiền não.</p>
+        </div> </div>
+    </div>
+
    <header id="top-bar">
     <h1><i class="fas fa-skull icon-dark"></i><i class="far fa-skull icon-light"></i> Quán Bất Tịnh</h1>
     <div style="display: flex; gap: 10px;">
         <button class="next-btn" id="btn-view-favorites" style="background: var(--bg-hover); color: var(--text-main); font-size:1rem; font-weight:normal;"><i class="far fa-star"></i></button>
         <button class="next-btn" id="btn-theme" style="background: var(--bg-hover); color: var(--text-main); font-size:1.1rem; font-weight:normal;"><i class="wi wi-moon-alt-first-quarter"></i></button>
         
-        <button class="next-btn" id="btn-rss" style="background: var(--bg-hover); color: var(--text-main); font-size:1rem; font-weight:normal;" onclick="window.open('https://meormine.github.io/quanbattinh/asubha.xml', '_blank')"><i class="far fa-rss"></i></button>
+        <button class="next-btn" id="btn-rss" style="background: var(--bg-hover); color: var(--text-main); font-size:1rem; font-weight:normal;" onclick="window.open('https://meormine.github.io/asubha-practice/asubha.xml', '_blank')"><i class="far fa-rss"></i></button>
         
         <button class="next-btn" id="btn-next"><i class="fas fa-arrow-right"></i></button>
     </div>
@@ -293,10 +442,10 @@ body.light-mode .icon-dark {
 
     <main id="main-content">
         <div id="container">
-            <h2 style="color: var(--text-muted); margin-top: 20vh;">Đang tải...</h2>
+            <h2 style="color: var(--text-muted); margin-top: 20vh;">Loading...</h2>
         </div>
     </main>
-            <script src="asubha.js"></script>
+    <script src="asubha.js"></script>
 
     <script>
    // ==========================================
@@ -321,7 +470,6 @@ function saveFavorites(favs) {
     localStorage.setItem('asubha_favorites', JSON.stringify(favs));
 }
 
-// Fixed version for line 211
 function isCurrentFavorited() {
     const favs = getFavorites();
     return favs.some(f => f.t === currentTextIdx && f.i === currentImgIdx);
@@ -412,7 +560,7 @@ async function loadRandomEntry() {
     if (favs.length === 0) {
         isFavoritesMode = false;
         btnViewFavs.style.color = "var(--text-main)";
-        btnViewFavs.querySelector('i').className = 'far fa-star'; // Add this line
+        btnViewFavs.querySelector('i').className = 'far fa-star'; 
         return loadRandomEntry(); 
     }
             // Sequential cycling
@@ -443,9 +591,8 @@ async function loadRandomEntry() {
             <div class="text-content">${article.text}</div>
             <div class="reference"><strong>Trích:</strong> ${referenceHTML}</div>
             <div style="display: flex; gap: 10px; margin-top: 15px;">
-                <button class="copy-btn" id="btn-download">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 1.1rem; height: 1.1rem; display: inline-block;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                </button>
+                <button class="copy-btn" id="btn-info">
+                    <i class="far fa-info-circle"></i></button>
                 <button class="copy-btn" id="copy-text-btn">📋 Sao Chép</button>
                 <button class="copy-btn" id="btn-toggle-fav"></button>
             </div>
@@ -455,10 +602,10 @@ async function loadRandomEntry() {
         updateFavButtonUI();
         mainContent.scrollTop = 0;
 
-        // Download Button
-        document.getElementById('btn-download').addEventListener('click', (e) => {
+        // Info Button Trigger Event
+        document.getElementById('btn-info').addEventListener('click', (e) => {
             e.stopPropagation();
-            window.open('https://github.com/meormine/quanbattinh/releases', '_blank');
+            document.getElementById('info-modal').style.display = 'flex';
         });
 
         // Image Click
@@ -518,7 +665,7 @@ btnViewFavs.addEventListener('click', (e) => {
     // Update Icon and Color
     const icon = btnViewFavs.querySelector('i');
     if (isFavoritesMode) {
-        btnViewFavs.style.color = "var(--fav-active)"; // Updated this line
+        btnViewFavs.style.color = "var(--fav-active)"; 
         icon.className = 'fas fa-star';
     } else {
         btnViewFavs.style.color = "var(--text-main)";
@@ -541,14 +688,18 @@ document.body.addEventListener('keydown', (e) => {
     }
 });
 
-// Modal Logic
+// Image Modal Close Logic
 const modalElement = document.getElementById('image-modal');
 document.getElementById('close-modal').addEventListener('click', () => { modalElement.style.display = 'none'; resetZoom(); });
 modalElement.addEventListener('click', (e) => { if (e.target === modalElement) { modalElement.style.display = 'none'; resetZoom(); } });
 
+// Info Modal Close Logic
+const infoModalElement = document.getElementById('info-modal');
+document.getElementById('close-info-modal').addEventListener('click', () => { infoModalElement.style.display = 'none'; });
+infoModalElement.addEventListener('click', (e) => { if (e.target === infoModalElement) { infoModalElement.style.display = 'none'; } });
 
 	// ==========================================
-        // 5. SELF-CENTERING ZOOM & PAN
+        // 6. SELF-CENTERING ZOOM & PAN
         // ==========================================
         let scale = 1;
         let pointX = 0;
@@ -587,7 +738,7 @@ modalElement.addEventListener('click', (e) => { if (e.target === modalElement) {
             e.preventDefault();
             
             const delta = -e.deltaY;
-            const zoomSpeed = 1.15; // Slightly slower for better control
+            const zoomSpeed = 1.15; 
             const oldScale = scale;
 
             if (delta > 0) {
