@@ -7,6 +7,7 @@
     <link rel="apple-touch-icon" href="icon-192.png">
 	<link href="./css/weather-icons.min.css" rel="stylesheet">
     <link href="./css/css.css" rel="stylesheet">
+	<script src="./asubha.js"></script>
     <title>Quán Bất Tịnh</title>
     <style>
        /* --- Theme Variables --- */
@@ -347,9 +348,102 @@
         body.light-mode .icon-dark {
             display: none;
         }
+		
+		/* --- Info Panel Overlay --- */
+.info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 18, 18, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    transition: opacity 0.4s ease;
+}
+
+body.light-mode .info-overlay {
+    background-color: rgba(244, 241, 234, 0.98);
+}
+
+.info-card {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border);
+    padding: 35px;
+    border-radius: 12px;
+    max-width: 550px;
+    width: 90%;
+    max-height: 100vh; /* Prevents the card from being taller than 90% of the screen */
+    overflow-y: auto; /* Adds a scrollbar inside the card if needed */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: left;
+}
+
+.info-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+.info-card ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.info-card li {
+    margin-bottom: 6px;
+}
+
+.enter-btn {
+    background-color: var(--accent);
+    color: #121212;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.2s;
+}
+
+.enter-btn:hover {
+    opacity: 0.9;
+}
     </style>
 </head>
 <body>
+
+<div id="welcome-overlay" class="info-overlay">
+    <div class="info-card">
+        <h2><i class="fas fa-circle-info" style="color: var(--accent);"></i> Thiền Quán Bất Tịnh</h2>
+        <p>Ứng dụng này là một không gian học tập và thiền định được thiết kế nhằm hỗ trợ thực hành pháp thiền <strong>Asubha-bhāvanā</strong> (Thiền Quán Bất Tịnh). Đây là một phương pháp tâm lý học truyền thống có lịch sử 2.500 năm được giảng dạy trong Phật giáo Nguyên thủy để chuyển hóa tham dục và các triền cái chướng ngại.</p>
+        
+        <p><strong>Lưu ý quan trọng:</strong></p>
+        <ul>
+            <li>Hệ thống chứa các tư liệu hình ảnh trực quan, mang tính giải phẫu khách quan, được sử dụng nghiêm túc cho việc quán chiếu tính vô thường và vô ngã.</li>
+            <li>Tất cả các nội dung văn bản đi kèm đều được trích dẫn trực tiếp từ các bài kinh chính thống thuộc tạng kinh Pali.</li>
+            <li>Người sử dụng nên cân nhắc mức độ phù hợp dựa trên năng lực hành trì và sự trưởng thành tâm linh cá nhân.</li>
+        </ul>
+        
+        <button class="enter-btn" onclick="document.getElementById('welcome-overlay').style.display='none'">Đã hiểu & Truy cập</button>
+    </div>
+</div>
+
     <div id="image-modal" class="modal">
         <span class="close-btn" id="close-modal"><i class="fas fa-xmark"></i></span>
         <img class="modal-content" id="modal-img">
@@ -445,7 +539,6 @@
             <h2 style="color: var(--text-muted); margin-top: 20vh;">Loading...</h2>
         </div>
     </main>
-    <script src="asubha.js"></script>
 
     <script>
    // ==========================================
